@@ -38,7 +38,7 @@ for (j in names(table(SamR1Range$Chr))){
   Reach_plus <- tapply(SamR1RangeChr[SamR1RangeChr[,9]>0,]$Anchor, SamR1RangeChr[SamR1RangeChr[,9]>0,]$TSS, max)
   Count_plus <- tapply(SamR1RangeChr[SamR1RangeChr[,9]>0,]$Anchor, SamR1RangeChr[SamR1RangeChr[,9]>0,]$TSS, function(x)(sum(hist(x,plot=F)$counts)))
   Comb_plus <- data.frame(cbind(j, names(Reach_plus), as.numeric(Reach_plus), as.numeric(Count_plus), "Plus"))
-  colnames(Comb_plus)<-c("Chr", "TSS", "Anchor", "Count", "Direction")
+  colnames(Comb_plus) <- c("Chr", "TSS", "Anchor", "Count", "Direction")
   Reach_minus <- tapply(SamR1RangeChr[SamR1RangeChr[,9]<0,]$Anchor,SamR1RangeChr[SamR1RangeChr[,9]<0,]$TSS, min)
   Count_minus <- tapply(SamR1RangeChr[SamR1RangeChr[,9]<0,]$Anchor,SamR1RangeChr[SamR1RangeChr[,9]<0,]$TSS, function(x)(sum(hist(x,plot=F)$counts)))
   Comb_minus <- data.frame(cbind(j, names(Reach_minus), as.numeric(Reach_minus), as.numeric(Count_minus), "Minus"))
@@ -66,7 +66,11 @@ for (j in names(table(SamR1Range$Chr))){
   FarthestAnchorTagPlus <- c()
   for (n in 1:nrow(SelectedGffChrPlus)){
     AnchorTagPlus <- subset(BundledTagRangeLengthChrPlus, Anchor>=(SelectedGffChrPlus[n,4]+ReadLength-1) & Anchor<=SelectedGffChrPlus[n,5])
-    FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus,min(AnchorTagPlus$TSS))
+    if(nrow(AnchorTagPlus)==0){
+      FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, SelectedGffChrPlus[n,4])
+    }else{
+      FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, min(AnchorTagPlus$TSS))
+    }
   }
   SelectedGffChrPlusAnchor <- cbind(SelectedGffChrPlus,FarthestAnchorTagPlus)
   colnames(SelectedGffChrPlusAnchor)[10] <- "ExtendedTSS"
@@ -75,7 +79,11 @@ for (j in names(table(SamR1Range$Chr))){
   FarthestAnchorTagMinus <- c()
   for (n in 1:nrow(SelectedGffChrMinus)){
     AnchorTagMinus <- subset(BundledTagRangeLengthChrMinus, Anchor>=SelectedGffChrMinus[n,4] & Anchor<=(SelectedGffChrMinus[n,5]-ReadLength+1))
-    FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus,max(AnchorTagMinus$TSS))
+    if(nrow(AnchorTagMinus)==0){
+      FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, SelectedGffChrMinus[n,5])
+    }else{
+      FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, max(AnchorTagMinus$TSS))
+    }
   }
   SelectedGffChrMinusAnchor <- cbind(SelectedGffChrMinus, FarthestAnchorTagMinus)
   colnames(SelectedGffChrMinusAnchor)[10] <- "ExtendedTSS"
@@ -95,7 +103,11 @@ for (k in 2:loop){
     FarthestAnchorTagPlus <- c()
     for (n in 1:nrow(SelectedGffChrPlus)){
       AnchorTagPlus <- subset(BundledTagRangeLengthChrPlus, Anchor>=(SelectedGffChrPlus[n,10]+ReadLength-1) & Anchor<=SelectedGffChrPlus[n,5])
-      FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus,min(AnchorTagPlus$ExtendedTSS))
+      if(nrow(AnchorTagPlus)==0){
+        FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, SelectedGffChrPlus[n,10])
+      }else{
+        FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, min(AnchorTagPlus$ExtendedTSS))
+      }    
     }
     SelectedGffChrPlusAnchor <- cbind(SelectedGffChrPlus[,1:9],FarthestAnchorTagPlus)
     colnames(SelectedGffChrPlusAnchor)[10] <- "ExtendedTSS"
@@ -104,7 +116,11 @@ for (k in 2:loop){
     FarthestAnchorTagMinus <- c()
     for (n in 1:nrow(SelectedGffChrMinus)){
       AnchorTagMinus <- subset(BundledTagRangeLengthChrMinus, Anchor>=SelectedGffChrMinus[n,4] & Anchor<=(SelectedGffChrMinus[n,10]-ReadLength+1))
-      FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus,max(AnchorTagMinus$ExtendedTSS))
+      if(nrow(AnchorTagMinus)==0){
+        FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, SelectedGffChrMinus[n,10])
+      }else{
+        FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, max(AnchorTagMinus$ExtendedTSS))
+      }
     }
     SelectedGffChrMinusAnchor <- cbind(SelectedGffChrMinus[,1:9], FarthestAnchorTagMinus)
     colnames(SelectedGffChrMinusAnchor)[10] <- "ExtendedTSS"
