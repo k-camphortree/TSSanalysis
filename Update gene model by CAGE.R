@@ -31,7 +31,6 @@ SamR1Range[SamR1[,9]<0, ncol(SamR1)+1] <- SamR1[SamR1[,9]<0, 8]-SamR1[SamR1[,9]<
 SamR1Range[SamR1[,9]<0, ncol(SamR1)+2] <- SamR1[SamR1[,9]<0, 8]
 
 #BUndle overlapped TSS paired tags
-BundledTagRange <- matrix(c(), ncol=5, nrow=1)
 BundledTagRange <- matrix(,ncol=5)
 colnames(BundledTagRange) <- c("Chr", "TSS", "Anchor", "Count", "Direction")
 for (j in names(table(SamR1Range$Chr))){
