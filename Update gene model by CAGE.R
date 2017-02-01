@@ -106,7 +106,7 @@ for (k in 2:loop){
       if(nrow(AnchorTagPlus)==0){
         FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, SelectedGffChrPlus[n,10])
       }else{
-        FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, min(AnchorTagPlus$ExtendedTSS))
+        FarthestAnchorTagPlus <- c(FarthestAnchorTagPlus, min(AnchorTagPlus$TSS))
       }    
     }
     SelectedGffChrPlusAnchor <- cbind(SelectedGffChrPlus[,1:9],FarthestAnchorTagPlus)
@@ -119,7 +119,7 @@ for (k in 2:loop){
       if(nrow(AnchorTagMinus)==0){
         FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, SelectedGffChrMinus[n,10])
       }else{
-        FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, max(AnchorTagMinus$ExtendedTSS))
+        FarthestAnchorTagMinus <- c(FarthestAnchorTagMinus, max(AnchorTagMinus$TSS))
       }
     }
     SelectedGffChrMinusAnchor <- cbind(SelectedGffChrMinus[,1:9], FarthestAnchorTagMinus)
