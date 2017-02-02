@@ -1,12 +1,11 @@
 # TSSanalysis
   Scripts for determination of Transcription Start Site (TSS) and update of gene models
 
+  ref: Tokizawa M, Kusunoki K, Koyama H, Kurotani A, Sakurai T, Suzuki Y, Kurata T, Yamamoto YY. "Identification of Arabidopsis genic and non-genic promoters by pair-end sequencing of TSS tags". Plant J, 2017.
 
 # Update gene model by CAGE.R <br>
   Extension of 5'UTR region of each gene from CAGE data and public gene model
-  
-  ref: Tokizawa M, Kusunoki K, Koyama H, Kurotani A, Sakurai T, Suzuki Y, Kurata T, Yamamoto YY. "Identification of Arabidopsis genic and non-genic promoters by pair-end sequencing of TSS tags". Plant J, 2017.
-  
+   
   argument 1: input SAM file name describing only 1st read of paired-end reads prepared by samtools <br>
   argument 2: input GFF file name <br>
   argument 3: input feature name such as "gene", "protein", "mRNA", "pseudogenic_transcript", "transposable_element_gene" <br>
