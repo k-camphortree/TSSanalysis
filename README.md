@@ -12,4 +12,4 @@
 # 
 # Output file:
 # 1st-9th columns: same to gff format ("Chr", "Source", "Feature", "Start", "End", "Score", "Strand", "Frame", "Attribute")
-# 10th column: Position of extended 5'end UTR (Result "Inf" means no extension)
+# 10th column: Position of extended 5'end UTR (original positions are shown in case of no extension)
