@@ -18,3 +18,16 @@
   Output file:
   1st-9th columns: same to gff format ("Chr", "Source", "Feature", "Start", "End", "Score", "Strand", "Frame", "Attribute") <br>
   10th column: Position of extended 5'end UTR (original positions are shown in case of no extension)
+
+
+# Extraction_of_reads_with_cap_signature.R <br>
+  Extraction of paired-end reads with cap-signiture (Only reads with G at the 5' end of the first (R1) reads) for identification of TSS-tags
+  Input directory including TSS-seq paired-end fastq files
+
+  argument 1: input directory
+  argument 2: output directory
+  
+  Example:
+  Rscript --vanilla --slave Extraction_of_reads_with_cap_signature.R $HOME/input/ $HOME/output
+
+
