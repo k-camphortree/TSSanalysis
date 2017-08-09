@@ -24,8 +24,8 @@
   Extraction of paired-end reads with cap-signiture (Only reads with G at the 5' end of the first (R1) reads) for identification of TSS-tags
   Input directory including TSS-seq paired-end fastq files
 
-  argument 1: input directory
-  argument 2: output directory
+  argument 1: input directory <br>
+  argument 2: output directory <br>
   
   Example:
   Rscript --vanilla --slave Extraction_of_reads_with_cap_signature.R $HOME/input/ $HOME/output
