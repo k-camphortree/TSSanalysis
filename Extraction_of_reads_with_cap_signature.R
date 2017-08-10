@@ -24,7 +24,7 @@ library(ShortRead)
 fastqR1<-list.files(in_dir, pattern="R1")
 fastqR2<-list.files(in_dir, pattern="R2")
 for (j in 1:length(fastqR1)){
-  fastaR1 <- readFastq(paste(in_dir,fastq1[j],sep=""))
+  fastaR1 <- readFastq(paste(in_dir,fastqR1[j],sep=""))
   objR1<-as.matrix(subseq(sread(fastaR1),start=1,end=1))[1:length(fastaR1)]=="G"
   fastaR1withCap <- fastaR1[objR1]
   fastaR1withoutCap <- fastaR1[!objR1]
