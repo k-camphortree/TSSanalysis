@@ -17,7 +17,7 @@ out_dir = commandArgs(trailingOnly=TRUE)[2]
 if(substr(in_dir, nchar(in_dir), nchar(in_dir))!="/"){
   in_dir <- paste(in_dir, "/", sep="")
 }
-if(substr(in_dir, nchar(out_dir), nchar(out_dir))!="/"){
+if(substr(out_dir, nchar(out_dir), nchar(out_dir))!="/"){
   out_dir <- paste(out_dir, "/", sep="")
 }
 library(ShortRead)
