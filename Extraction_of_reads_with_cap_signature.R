@@ -33,7 +33,7 @@ for (j in 1:length(fastqR1)){
   fastaR2 <- readFastq(paste(in_dir, fastqR2[j], sep=""))
   objR2withCap <- is.element(gsub("2:N:0","",id(fastaR2)),gsub("1:N:0","",id(fastaR1withCap)))
   objR2withoutCap <- is.element(gsub("2:N:0","",id(fastaR2)),gsub("1:N:0","",id(fastaR1withoutCap)))
-  fastaR2withCap <- fastaR2[obj2RwithCap]
+  fastaR2withCap <- fastaR2[objR2withCap]
   fastaR2withoutCap <- fastaR2[objR2withoutCap]
   writeFastq(fastaR2withCap, file=paste(out_dir, "onlyG_",fastq2[j],sep=""))
   writeFastq(fastaR2withoutCap, file=paste(out_dir, "exceptG_",fastq2[j],sep=""))
